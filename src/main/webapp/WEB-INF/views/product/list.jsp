@@ -5,7 +5,7 @@
 		<div class="motel-item">
 				<div class="wrap-img" style="background: url(${pageContext.request.contextPath}/public/uploads/images/no_image.png) center; background-size: cover;">
 					<div class="category">
-						<a href="category.html">${productName}</a>
+						<a href="category.html">${param.product}</a>
 					</div>
 				</div>
 			<div class="motel-detail">

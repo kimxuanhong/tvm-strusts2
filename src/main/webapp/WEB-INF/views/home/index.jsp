@@ -127,14 +127,17 @@
 		<!-- danh mục -->
 		<h3 class="title-comm"><span class="title-holder">XEM NHIỀU NHẤT</span><!-- <marquee>Nhiều người quan tâm - hãy xem nó có phù hợp với bạn</marquee> --></h3>
 		    <jsp:include page="/WEB-INF/views/product/list.jsp">
-                <jsp:param name="productName" value="oke oje oje"/>
+                <jsp:param name="product" value="xuanhong 1"/>
             </jsp:include>
 		<!-- danh mục -->
 		<h3 class="title-comm"><span class="title-holder">GIÁ TỐT NHẤT</span><!-- <marquee>Phù hợp với bạn nào có hồ bao không lớn - nhưng vẫn có nơi ở tốt</marquee> --></h3>
-		<c:set var="productName" value="hhhhhhhhh" scope="request"/>
-		<jsp:directive.include file="/WEB-INF/views/product/list.jsp" />
+			<jsp:include page="/WEB-INF/views/product/list.jsp">
+                <jsp:param name="product" value="xuanhong 2"/>
+            </jsp:include>
 		<!-- danh mục -->
 		<h3 class="title-comm"><span class="title-holder">MỚI THÊM GẦN ĐÂY</span><!-- <marquee>Nơi ở mới luôn được cập nhật hằng ngày</marquee> --></h3>
-		<jsp:directive.include file="/WEB-INF/views/product/list.jsp" />
+			<jsp:include page="/WEB-INF/views/product/list.jsp">
+                <jsp:param name="product" value="xuanhong 3"/>
+            </jsp:include>
 	</div>
 </div>
