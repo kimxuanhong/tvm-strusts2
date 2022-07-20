@@ -1,6 +1,10 @@
 package com.xhk.travinhmotel.auth.form;
 
-public class LoginForm {
+import java.io.Serializable;
+
+public class LoginForm implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String username;
     private String password;
 

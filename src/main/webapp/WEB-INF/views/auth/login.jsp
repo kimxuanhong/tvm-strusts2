@@ -5,7 +5,9 @@
 
 <div class="container">
    <br>
-   <h3 >Chào mừng bạn trở lại</h3>
+   <h3 >${params.message} </h3>
+
+   <h3 >Chào mừng bạn trở lại ${params.account.firstName} </h3>
    <br>
   <s:form id="loginForm" class="loginForm" theme="css_xhtml" action="login">
       <table class="login">

@@ -1,13 +1,10 @@
 package com.xhk.travinhmotel.auth.action;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 import com.xhk.travinhmotel.auth.entity.Account;
 import com.xhk.travinhmotel.auth.form.LoginForm;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.util.ServletContextAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,10 +13,10 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import javax.servlet.ServletContext;
+import java.io.Serializable;
 
 @Namespace("/auth")
-public class AuthAction extends ActionSupport{
+public class AuthAction extends BaseAction implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -46,7 +43,11 @@ public class AuthAction extends ActionSupport{
         SessionFactory factory = meta.getSessionFactoryBuilder().build();
         Session session = factory.openSession();
         Transaction t = session.beginTransaction();
-        session.createQuery("FROM Account", Account.class);
+        Account account =  session.createQuery("FROM Account", Account.class).getResultList().get(0);
+
+
+        addParam("account", account);
+        addParam("message", "Tao xin chao!!!");
         return SUCCESS;
     }
 
