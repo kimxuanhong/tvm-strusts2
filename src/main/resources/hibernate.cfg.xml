@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 5.3//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-5.3.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="show_sql"> true </property>
+        <property name="format_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hong</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">passw0rd</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+
+        <mapping class="com.xhk.travinhmotel.auth.entity.AbstractEntity"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Account"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Address"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.City"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Contact"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Customer"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.District"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Feedback"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Motel"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.MotelUtility"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.MotelUtilityPK"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Staff"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.StaffPermission"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Utility"/>
+        <mapping class="com.xhk.travinhmotel.auth.entity.Ward"/>
+    </session-factory>
+</hibernate-configuration>

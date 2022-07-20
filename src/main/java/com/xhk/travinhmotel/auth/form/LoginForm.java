@@ -1,6 +1,6 @@
-package com.xhk.travinhmotel.auth.model;
+package com.xhk.travinhmotel.auth.form;
 
-public class LoginDto {
+public class LoginForm {
     private String username;
     private String password;
 
