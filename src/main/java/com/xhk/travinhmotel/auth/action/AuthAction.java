@@ -3,6 +3,7 @@ package com.xhk.travinhmotel.auth.action;
 import com.xhk.travinhmotel.auth.dao.AccountDao;
 import com.xhk.travinhmotel.auth.entity.Account;
 import com.xhk.travinhmotel.auth.form.LoginForm;
+import com.xhk.travinhmotel.auth.service.AccountService;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -11,14 +12,10 @@ import java.io.Serializable;
 import java.util.Optional;
 
 @Namespace("/auth")
-public class AuthAction extends BaseAction implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class AuthAction extends BaseAction {
     private LoginForm loginForm;
 
-    private final transient AccountDao accountDao = AccountDao.getInstance();
-
+    private final AccountService accountService = AccountService.getInstance();
 
     @Action(value = "index",
             results = {
@@ -31,14 +28,19 @@ public class AuthAction extends BaseAction implements Serializable {
 
     @Action(value = "login",
             results = {
-                    @Result(name = SUCCESS, location = "auth.index", type = "tiles")
+                    @Result(name = SUCCESS, location = "auth.index", type = "tiles"),
+                    @Result(name = ERROR, location = "home.index", type = "tiles")
             }
     )
     public String login() {
-        Optional<Account> account = accountDao.findById(Long.parseLong(loginForm.getUsername()));
-        addParam("account", account.orElse(new Account()));
-        addParam("message", "Tao xin chao!!!");
-        return SUCCESS;
+        try {
+            Account account = accountService.getAccountById(Long.parseLong(loginForm.getUsername()));
+            addParam("account", account);
+            addParam("message", "Tao xin chao!!!");
+            return SUCCESS;
+        } catch (Exception e) {
+            return ERROR;
+        }
     }
 
 

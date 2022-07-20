@@ -12,6 +12,6 @@ public class AccountDao extends AbstractCrudDao<Account, Long> {
     }
 
     public static AccountDao getInstance() {
-        return AccountDao.SingletonHelper.INSTANCE;
+        return SingletonHelper.INSTANCE;
     }
 }
