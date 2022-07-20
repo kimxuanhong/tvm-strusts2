@@ -1,14 +1,14 @@
 package com.xhk.travinhmotel.auth.action;
 
-import com.xhk.travinhmotel.auth.config.HibernateUtil;
+import com.xhk.travinhmotel.auth.dao.AccountDao;
 import com.xhk.travinhmotel.auth.entity.Account;
 import com.xhk.travinhmotel.auth.form.LoginForm;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
-import org.hibernate.Session;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @Namespace("/auth")
 public class AuthAction extends BaseAction implements Serializable {
@@ -33,15 +33,12 @@ public class AuthAction extends BaseAction implements Serializable {
             }
     )
     public String login() {
-        Session session = HibernateUtil.getInstance().getSession();
-        Account account =  session.createQuery("FROM Account", Account.class).getResultList().get(0);
-
-        session.close();
-        addParam("account", account);
+        AccountDao accountDao = new AccountDao();
+        Optional<Account> account = accountDao.findById(1L);
+        addParam("account", account.get());
         addParam("message", "Tao xin chao!!!");
         return SUCCESS;
     }
-
 
 
     public LoginForm getLoginForm() {
