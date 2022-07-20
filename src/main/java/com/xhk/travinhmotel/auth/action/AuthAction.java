@@ -17,6 +17,8 @@ public class AuthAction extends BaseAction implements Serializable {
 
     private LoginForm loginForm;
 
+    private final transient AccountDao accountDao = AccountDao.getInstance();
+
 
     @Action(value = "index",
             results = {
@@ -33,9 +35,8 @@ public class AuthAction extends BaseAction implements Serializable {
             }
     )
     public String login() {
-        AccountDao accountDao = new AccountDao();
-        Optional<Account> account = accountDao.findById(1L);
-        addParam("account", account.get());
+        Optional<Account> account = accountDao.findById(Long.parseLong(loginForm.getUsername()));
+        addParam("account", account.orElse(new Account()));
         addParam("message", "Tao xin chao!!!");
         return SUCCESS;
     }
