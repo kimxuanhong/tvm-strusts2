@@ -78,8 +78,8 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="btn-dangtin" href="user/motel/add"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>
-				<li><a href="auth/index.html"><i class="fas fa-user-circle"></i> Đăng nhập / Đăng ký</a></li>
+				<li><a class="btn-dangtin" href="${pageContext.request.contextPath}/user/motel/add"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>
+				<li><a href="${pageContext.request.contextPath}/auth/index.html"><i class="fas fa-user-circle"></i> Đăng nhập / Đăng ký</a></li>
 			</ul>
 
 		</div>

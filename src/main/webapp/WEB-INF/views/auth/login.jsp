@@ -50,3 +50,4 @@
     margin-left: 40%;
     margin-right: 40%;
 }
+</style>
