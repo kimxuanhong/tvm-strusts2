@@ -7,11 +7,13 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 
+import java.util.List;
+
 @Namespace("/auth")
 public class AuthAction extends BaseAction {
     private LoginForm loginForm;
 
-    private final AccountService accountService = AccountService.getInstance();
+    private final transient AccountService accountService = AccountService.getInstance();
 
     @Action(value = "index",
             results = {
@@ -33,12 +35,14 @@ public class AuthAction extends BaseAction {
             Account account = accountService.getAccountById(Long.parseLong(loginForm.getUsername()));
             addParam("account", account);
             addParam("message", "Tao xin chao!!!");
+            List<Account> accountList = accountService.getAccountList();
+            addParam("accountList", accountList);
+
             return SUCCESS;
         } catch (Exception e) {
             return ERROR;
         }
     }
-
 
     public LoginForm getLoginForm() {
         return loginForm;
@@ -47,5 +51,4 @@ public class AuthAction extends BaseAction {
     public void setLoginForm(LoginForm loginForm) {
         this.loginForm = loginForm;
     }
-
 }

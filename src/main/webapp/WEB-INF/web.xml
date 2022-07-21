@@ -7,16 +7,6 @@
 
     <display-name>Learn Struts 2 Framework with Real Apps</display-name>
 
-    <context-param>
-        <param-name>tilesDefinitions</param-name>
-        <param-value>
-            /WEB-INF/tiles.xml,
-            /WEB-INF/tiles_news.xml,
-            /WEB-INF/tiles_home.xml,
-            /WEB-INF/tiles_about_us.xml
-        </param-value>
-    </context-param>
-
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>

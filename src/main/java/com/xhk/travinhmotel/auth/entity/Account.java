@@ -37,7 +37,9 @@ public class Account extends AbstractEntity implements Serializable {
     private String address;
 
     public String getFullName() {
-        return lastName.concat(" ").concat(firstName).trim();
+        String _lastName = lastName != null ? lastName : "";
+        String _firstName = firstName != null ? firstName : "";
+        return _lastName.concat(" ").concat(_firstName).trim();
     }
 
     public Long getId() {

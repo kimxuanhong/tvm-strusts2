@@ -5,7 +5,7 @@
 
 <div class="container">
    <br>
-   <h3 >${params.message} </h3>
+   <h3 >${params.accountList.get(0).email} </h3>
 
    <h3 >Chào mừng bạn trở lại ${params.account.email} </h3>
    <br>
@@ -14,40 +14,16 @@
         <tbody>
           <tr>
             <td><s:label value="UserName:" for="username" /></td>
-            <td><s:textfield name="loginForm.username" id="username" /></td>
+            <td><s:textfield name="loginForm.username" id="username" class="form-control" /></td>
           </tr>
           <tr>
             <td><s:label value="Password:" for="password" /></td>
-            <td><s:password name="loginForm.password" id="password" /></td>
+            <td><s:password name="loginForm.password" id="password" class="form-control"/></td>
           </tr>
           <tr>
-          <td><s:submit name="login" value="Login"/></td>
+          <td><s:submit name="login" value="Login" class="btn btn-success form-control center"/></td>
           </tr>
         </tbody>
       </table>
   </s:form>
-   <table class="tbCenter">
-      <tr>
-         <td><hr></td>
-      </tr>
-      <tr>
-         <td>
-            <a style="width: 100%;height: 35px;" class="btn btn-danger form-control" href="auth/google'">Đăng nhập / Đăng ký bằng <i class="fab fa-google-plus-g"></i> </a>
-         </td>
-      </tr>
-   </table>
 </div>
-<style type="text/css">
-.tbCenter{
-   margin: auto; width: 30%; padding-top: 100px
-}
-
-.container{
-    text-align: center;
-}
-
-.loginForm{
-    margin-left: 40%;
-    margin-right: 40%;
-}
-</style>
