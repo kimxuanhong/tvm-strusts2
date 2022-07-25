@@ -18,7 +18,7 @@ public class ApiAuthAction extends JsonAction {
     private final transient AccountService accountService = AccountService.getInstance();
 
 
-    @Secured(value = {Role.CUSTOMER})
+    @Secured(value = {Role.ADMIN, Role.CUSTOMER})
     @Action(value = "list-account")
     public String list() {
         AuthenticationService.getInstance().validate("asdadf", "asdadsf");

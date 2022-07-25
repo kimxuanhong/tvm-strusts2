@@ -6,9 +6,7 @@ import com.xhk.travinhmotel.auth.form.LoginForm;
 import com.xhk.travinhmotel.auth.security.Role;
 import com.xhk.travinhmotel.auth.security.Secured;
 import com.xhk.travinhmotel.auth.service.AccountService;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.*;
 
 @Namespace("/auth")
 public class AuthAction extends WebAction {
