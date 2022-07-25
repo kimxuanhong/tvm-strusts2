@@ -13,10 +13,10 @@ import org.apache.struts2.interceptor.SessionAware;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.opensymphony.xwork2.Action.ERROR;
+
 
 @ExceptionMappings(
         value = {
@@ -60,15 +60,28 @@ public abstract class BaseAction extends ActionSupport implements Parameterizabl
         this.session = (SessionMap<String, Object>) map;
     }
 
-    public void putSession(String key, Object value) {
+    protected void addSession(String key, Object value) {
         this.session.put(key, value);
     }
 
-    public HttpSession getSession() {
+    protected void executeLogin() {
+        addSession("loginStatus", "true");
+    }
+
+    protected void executeLout() {
+        addSession("loginStatus", "false");
+    }
+
+    protected void setUserRoles(Role... roles){
+        List<Role> roleTypes = Arrays.asList(roles);
+        addSession("userRoles", roleTypes);
+    }
+
+    protected HttpSession getSession() {
         return this.request.getSession();
     }
 
-    public Object getAttribute(String key) {
+    protected Object getAttribute(String key) {
         return this.getSession().getAttribute(key);
     }
 }

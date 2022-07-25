@@ -1,6 +1,7 @@
 package com.xhk.travinhmotel.auth.service;
 
 import com.xhk.travinhmotel.auth.dao.AccountDao;
+import com.xhk.travinhmotel.auth.dao.DaoUtils;
 import com.xhk.travinhmotel.auth.entity.Account;
 
 import java.util.Optional;
@@ -23,7 +24,7 @@ public class AuthenticationService {
 
 
     public boolean validate(String username,String password){
-        Optional<Account> account = accountDao.findByEmail(username);
+        Optional<Account> account = DaoUtils.fetchOne(accountDao.findByEmail("abcd"));
 
         return false;
 

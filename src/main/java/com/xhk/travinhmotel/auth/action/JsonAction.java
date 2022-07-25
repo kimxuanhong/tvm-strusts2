@@ -2,8 +2,7 @@ package com.xhk.travinhmotel.auth.action;
 
 import org.apache.struts2.convention.annotation.*;
 
-import static com.opensymphony.xwork2.Action.ERROR;
-import static com.opensymphony.xwork2.Action.SUCCESS;
+import static com.opensymphony.xwork2.Action.*;
 
 @Results(
         value = {
@@ -20,8 +19,16 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
                         name = ERROR,
                         type = "json",
                         params = {
-                                "root", "params.jsonData",
-                                "errorCode", "500"
+                                "root", "params.jsonDataError500",
+                                "statusCode", "500"
+                        }
+                ),
+                @Result(
+                        name = LOGIN,
+                        type = "json",
+                        params = {
+                                "root", "params.jsonDataError401",
+                                "statusCode", "401",
                         }
                 )
         }
@@ -45,9 +52,12 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 )
 @ParentPackage("api-controllers")
 public abstract class JsonAction extends BaseAction {
+    protected JsonAction() {
+        addParam("jsonDataError401", new JsonResponse("401", "401 Unauthorized"));
+        addParam("jsonDataError500", new JsonResponse("500", "500 Server Error"));
+    }
 
     public void addJsonParam(Object jsonData) {
         addParam("jsonData", jsonData);
     }
 }
-
