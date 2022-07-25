@@ -10,7 +10,7 @@ import org.apache.struts2.convention.annotation.Result;
 import java.util.List;
 
 @Namespace("/auth")
-public class AuthAction extends BaseAction {
+public class AuthAction extends WebAction {
     private LoginForm loginForm;
 
     private final transient AccountService accountService = AccountService.getInstance();

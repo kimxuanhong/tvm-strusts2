@@ -7,9 +7,10 @@ import org.apache.struts2.convention.annotation.Action;
 
 import java.util.List;
 
+@Role(value = {RoleType.ADMIN})
 public class ApiAuthAction extends JsonAction {
     private LoginForm loginForm;
-    private final transient AccountService accountService = AccountService.getInstance();
+    private final transient AccountService accountService =null;
 
 
     @Action(value = "list-account")

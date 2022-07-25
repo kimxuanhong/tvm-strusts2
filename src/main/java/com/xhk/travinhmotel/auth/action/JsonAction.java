@@ -21,8 +21,6 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
                         type = "json",
                         params = {
                                 "root", "params.jsonData",
-                                "contentType", "application/json",
-                                "encoding", "UTF-8",
                                 "errorCode", "500"
                         }
                 )
@@ -30,20 +28,19 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 )
 @InterceptorRefs(
         value = {
-                @InterceptorRef(value = "defaultStack"),
+                @InterceptorRef(value = "appDefaultStack"),
                 @InterceptorRef(
                         value = "json",
                         params = {
-                                "enableSMD", "true",
-                                "contentType", "application/json",
-                                "encoding", "UTF-8",
+                                "enableSMD", "true"
                         }
                 )
         }
 )
 @ExceptionMappings(
         value = {
-                @ExceptionMapping(exception = "java.lang.Exception", result = ERROR)
+                @ExceptionMapping(exception = "java.lang.Exception", result = ERROR),
+                @ExceptionMapping(exception = "java.lang.NullPointerException", result = ERROR)
         }
 )
 @ParentPackage("api-controllers")

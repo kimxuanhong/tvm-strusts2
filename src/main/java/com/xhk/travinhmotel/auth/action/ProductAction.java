@@ -16,7 +16,7 @@ public class ProductAction extends ActionSupport {
             @Result(name = SUCCESS, location = "product.detail", type = "tiles")
     })
     public String index() {
-        productName="kimxuanhong";
+        productName = "kimxuanhong";
         return SUCCESS;
     }
 

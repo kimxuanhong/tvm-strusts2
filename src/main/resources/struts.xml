@@ -4,15 +4,40 @@
 
 <struts>
 
-    <constant name="struts.convention.default.parent.package" value="controllers"/>
+    <constant name="struts.convention.default.parent.package" value="web-controllers"/>
 
-    <package name="controllers" extends="struts-default">
+    <package name="web-controllers" extends="struts-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
+        <interceptors>
+            <interceptor name="securityInterceptor" class="com.xhk.travinhmotel.auth.config.SecurityInterceptor"/>
+            <interceptor name="logInterceptor" class="com.xhk.travinhmotel.auth.config.LogInterceptor"/>
+
+            <interceptor-stack name="appDefaultStack">
+                <interceptor-ref name="logInterceptor"/>
+                <interceptor-ref name="securityInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="appDefaultStack"/>
     </package>
 
     <package name="api-controllers" extends="json-default">
-    </package>
+        <interceptors>
+            <interceptor name="securityInterceptor" class="com.xhk.travinhmotel.auth.config.SecurityInterceptor"/>
+            <interceptor name="logInterceptor" class="com.xhk.travinhmotel.auth.config.LogInterceptor"/>
+            <interceptor-stack name="appDefaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="timer" />
+                <interceptor-ref name="logInterceptor"/>
+                <interceptor-ref name="securityInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
 
+        <default-interceptor-ref name="appDefaultStack"/>
+    </package>
 </struts>
