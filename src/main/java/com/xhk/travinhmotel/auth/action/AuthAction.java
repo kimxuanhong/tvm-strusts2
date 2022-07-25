@@ -7,8 +7,6 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 
-import java.util.List;
-
 @Namespace("/auth")
 public class AuthAction extends WebAction {
     private LoginForm loginForm;
@@ -26,18 +24,16 @@ public class AuthAction extends WebAction {
 
     @Action(value = "login",
             results = {
-                    @Result(name = SUCCESS, location = "auth.index", type = "tiles"),
-                    @Result(name = ERROR, location = "home.index", type = "tiles")
+                    @Result(name = SUCCESS, type = "redirectAction", params = {"actionName", "index", "namespace", "/home"}),
+                    @Result(name = ERROR, location = "auth.index", type = "tiles")
             }
     )
     public String login() {
         try {
             Account account = accountService.getAccountById(Long.parseLong(loginForm.getUsername()));
             addParam("account", account);
-            addParam("message", "Tao xin chao!!!");
-            List<Account> accountList = accountService.getAccountList();
-            addParam("accountList", accountList);
-
+            setUserRoles(Role.ADMIN);
+            executeLogin();
             return SUCCESS;
         } catch (Exception e) {
             return ERROR;

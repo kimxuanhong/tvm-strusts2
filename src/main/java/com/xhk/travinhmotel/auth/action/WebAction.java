@@ -8,7 +8,7 @@ import static com.opensymphony.xwork2.Action.LOGIN;
 @Results(
         value = {
                 @Result(name = ERROR, location = "error.index", type = "tiles"),
-                @Result(name = LOGIN, location = "auth.index", type = "tiles")
+                @Result(name = LOGIN, type = "redirectAction", params = {"actionName", "index", "namespace", "/auth"}),
         }
 )
 @ExceptionMappings(
