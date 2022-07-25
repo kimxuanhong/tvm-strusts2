@@ -1,5 +1,6 @@
-package com.xhk.travinhmotel.auth.action;
+package com.xhk.travinhmotel.auth.action.web;
 
+import com.xhk.travinhmotel.auth.action.base.WebAction;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;

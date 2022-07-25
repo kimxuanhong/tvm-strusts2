@@ -1,5 +1,6 @@
-package com.xhk.travinhmotel.auth.action;
+package com.xhk.travinhmotel.auth.action.base;
 
+import com.xhk.travinhmotel.auth.action.dto.JsonResponse;
 import org.apache.struts2.convention.annotation.*;
 
 import static com.opensymphony.xwork2.Action.*;

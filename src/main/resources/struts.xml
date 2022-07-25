@@ -11,7 +11,7 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
         <interceptors>
-            <interceptor name="securityInterceptor" class="com.xhk.travinhmotel.auth.config.SecurityInterceptor"/>
+            <interceptor name="securityInterceptor" class="com.xhk.travinhmotel.auth.security.SecurityInterceptor"/>
             <interceptor name="logInterceptor" class="com.xhk.travinhmotel.auth.config.LogInterceptor"/>
 
             <interceptor-stack name="appDefaultStack">
@@ -26,7 +26,7 @@
 
     <package name="api-controllers" extends="json-default">
         <interceptors>
-            <interceptor name="securityInterceptor" class="com.xhk.travinhmotel.auth.config.SecurityInterceptor"/>
+            <interceptor name="securityInterceptor" class="com.xhk.travinhmotel.auth.security.SecurityInterceptor"/>
             <interceptor name="logInterceptor" class="com.xhk.travinhmotel.auth.config.LogInterceptor"/>
             <interceptor-stack name="appDefaultStack">
                 <interceptor-ref name="exception"/>

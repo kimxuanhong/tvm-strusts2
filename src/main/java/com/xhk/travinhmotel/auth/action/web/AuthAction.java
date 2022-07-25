@@ -1,7 +1,9 @@
-package com.xhk.travinhmotel.auth.action;
+package com.xhk.travinhmotel.auth.action.web;
 
+import com.xhk.travinhmotel.auth.action.base.WebAction;
 import com.xhk.travinhmotel.auth.entity.Account;
 import com.xhk.travinhmotel.auth.form.LoginForm;
+import com.xhk.travinhmotel.auth.security.Role;
 import com.xhk.travinhmotel.auth.service.AccountService;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;

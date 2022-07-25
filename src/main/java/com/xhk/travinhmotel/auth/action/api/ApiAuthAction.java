@@ -1,7 +1,11 @@
-package com.xhk.travinhmotel.auth.action;
+package com.xhk.travinhmotel.auth.action.api;
 
+import com.xhk.travinhmotel.auth.action.base.JsonAction;
+import com.xhk.travinhmotel.auth.action.dto.JsonResponse;
 import com.xhk.travinhmotel.auth.entity.Account;
 import com.xhk.travinhmotel.auth.form.LoginForm;
+import com.xhk.travinhmotel.auth.security.Role;
+import com.xhk.travinhmotel.auth.security.Secured;
 import com.xhk.travinhmotel.auth.service.AccountService;
 import com.xhk.travinhmotel.auth.service.AuthenticationService;
 import org.apache.struts2.convention.annotation.Action;

@@ -1,4 +1,4 @@
-package com.xhk.travinhmotel.auth.action;
+package com.xhk.travinhmotel.auth.security;
 
 
 import java.lang.annotation.ElementType;

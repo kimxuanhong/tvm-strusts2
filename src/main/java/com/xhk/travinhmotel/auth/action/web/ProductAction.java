@@ -1,4 +1,4 @@
-package com.xhk.travinhmotel.auth.action;
+package com.xhk.travinhmotel.auth.action.web;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Action;

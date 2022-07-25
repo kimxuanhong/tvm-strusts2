@@ -1,10 +1,8 @@
-package com.xhk.travinhmotel.auth.config;
+package com.xhk.travinhmotel.auth.security;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-import com.xhk.travinhmotel.auth.action.Secured;
-import com.xhk.travinhmotel.auth.action.Role;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;

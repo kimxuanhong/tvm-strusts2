@@ -1,4 +1,4 @@
-package com.xhk.travinhmotel.auth.action;
+package com.xhk.travinhmotel.auth.action.base;
 
 import org.apache.struts2.convention.annotation.*;
 
