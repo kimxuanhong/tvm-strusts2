@@ -4,6 +4,7 @@ import com.xhk.travinhmotel.auth.action.base.WebAction;
 import com.xhk.travinhmotel.auth.entity.Account;
 import com.xhk.travinhmotel.auth.form.LoginForm;
 import com.xhk.travinhmotel.auth.security.Role;
+import com.xhk.travinhmotel.auth.security.Secured;
 import com.xhk.travinhmotel.auth.service.AccountService;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -36,6 +37,22 @@ public class AuthAction extends WebAction {
             addParam("account", account);
             setUserRoles(Role.ADMIN);
             executeLogin();
+            return SUCCESS;
+        } catch (Exception e) {
+            return ERROR;
+        }
+    }
+
+    @Secured
+    @Action(value = "logout",
+            results = {
+                    @Result(name = SUCCESS, type = "redirectAction", params = {"actionName", "index", "namespace", "/home"}),
+            }
+    )
+    public String logout() {
+        try {
+            setUserRoles();
+            executeLout();
             return SUCCESS;
         } catch (Exception e) {
             return ERROR;
