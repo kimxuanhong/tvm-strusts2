@@ -3,6 +3,7 @@ package com.xhk.travinhmotel.auth.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 public class Motel extends AbstractEntity implements Serializable {
@@ -12,6 +13,11 @@ public class Motel extends AbstractEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String slug;
+    private String phone;
+    private String description;
+    private Integer acreage;
+    private Boolean status;
     private String thumbnail;
     private BigDecimal price;
     @OneToOne
@@ -23,6 +29,11 @@ public class Motel extends AbstractEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "update_by_id")
     private Account updateBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+    @OneToMany(mappedBy = "motel", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Set<Feedback> feedback;
 
     public Long getId() {
         return id;
@@ -78,5 +89,61 @@ public class Motel extends AbstractEntity implements Serializable {
 
     public void setUpdateBy(Account updateBy) {
         this.updateBy = updateBy;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getAcreage() {
+        return acreage;
+    }
+
+    public void setAcreage(Integer acreage) {
+        this.acreage = acreage;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Feedback> getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(Set<Feedback> feedback) {
+        this.feedback = feedback;
     }
 }
