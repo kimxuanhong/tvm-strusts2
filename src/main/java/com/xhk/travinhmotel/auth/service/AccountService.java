@@ -1,5 +1,6 @@
 package com.xhk.travinhmotel.auth.service;
 
+import com.xhk.travinhmotel.auth.action.dto.QueryPredicate;
 import com.xhk.travinhmotel.auth.dao.AccountDao;
 import com.xhk.travinhmotel.auth.entity.Account;
 
@@ -24,7 +25,16 @@ public class AccountService {
         return accountDao.findById(id).orElseThrow(() -> new RuntimeException(String.format("Account with id=%s not found!", id)));
     }
 
+    public Account getAccountByEmail(String email) {
+        return accountDao.findByEmail(email).orElseThrow(() -> new RuntimeException(String.format("Account with email=%s not found!", email)));
+    }
+
+
     public List<Account> getAccountList() {
         return accountDao.findAll();
+    }
+
+    public List<Account> search(QueryPredicate build) {
+        return accountDao.findAll(build);
     }
 }

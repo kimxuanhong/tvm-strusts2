@@ -3,12 +3,11 @@ package com.xhk.travinhmotel.auth.dao.base;
 import com.xhk.travinhmotel.auth.config.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 public abstract class AbstractCrudDao<T, ID> implements CrudDao<T, ID> {
@@ -143,4 +142,37 @@ public abstract class AbstractCrudDao<T, ID> implements CrudDao<T, ID> {
         return resultList;
     }
 
+    protected Optional<T> fetchOne(String queryString, Map<String, Object> params) {
+        try (Session session = HibernateUtil.getInstance().getSession()) {
+            Query<T> query = session.createQuery(queryString, getClazz());
+            this.mappingParams(query, params);
+
+            return Optional.of(query.getSingleResult());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Optional.empty();
+
+    }
+
+    protected List<T> fetch(String queryString, Map<String, Object> params) {
+        try (Session session = HibernateUtil.getInstance().getSession()) {
+            Query<T> query = session.createQuery(queryString, getClazz());
+            this.mappingParams(query, params);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>();
+    }
+
+    protected void mappingParams(Query<T> query, Map<String, Object> params) {
+        Set<String> keys = params.keySet();
+        for (String key : keys) {
+            query.setParameter(key, params.get(key));
+        }
+    }
 }
