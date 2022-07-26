@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<s:url action="search" namespace="/api/motel" var="searchUrl"/>
 
 <div id="totop"  class="container">
 	<div id="find">
@@ -10,42 +11,42 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="col-md-3">
 						<div class="form-group">
-							<label class="dk">Chọn danh mục</label>
+							<label class="dk">Chọn Danh Mục</label>
 							<select id="category_2" name="category_2" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-								<option value="0">Chọn tất cả</option>
-								@foreach ($categorys as $category)
-								<option @if($category->id==1) selected @endif value="{{$category->id}}">{{$category->name}}</option>
-								@endforeach
-							</select>
+							    <option value="0">Chọn Tất Cả</option>
+                                <s:iterator value="params.categories" status="stat">
+                                   <option value="<s:property value="id"/>"><s:property value="name"/></option>
+                                </s:iterator>
+                            </select>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
-							<label class="dk">Chọn tỉnh/thành phố</label>
+							<label class="dk">Chọn Tỉnh/Thành Phố</label>
 							<select onchange="provinceChange(this.value)" id="province_2" name="province" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-								<option value="0">Chọn tất cả</option>
-								@foreach ($provinces as $province)
-								<option @if($province->id==1) selected @endif value="{{$province->id}}">{{$province->name}}</option>
-								@endforeach
+								<option value="0">Chọn Tất Cả</option>
+                                <s:iterator value="params.cities" status="stat">
+                                   <option value="<s:property value="id"/>"><s:property value="name"/></option>
+                                </s:iterator>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
-							<label class="dk">Chọn quận/huyện</label>
-							<select onchange="districtChange(this.value)" id="district_2" name="district" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-								<option value="0">Chọn tất cả</option>
-								@foreach ($districts as $district)
-								<option @if($district->id==1) selected @endif  value="{{$district->id}}">{{$district->name}}</option>
-								@endforeach
+							<label class="dk">Chọn Quận/Huyện</label>
+							<select id="district_2" name="district" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
+								<option value="0">Chọn Tất Cả</option>
+                                <s:iterator value="params.districts" status="stat">
+                                   <option value="<s:property value="id"/>"><s:property value="name"/></option>
+                                </s:iterator>
 							</select>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
-							<label class="dk">Chọn khoản giá</label>
+							<label class="dk">Chọn Khoản Giá</label>
 							<select id="price_2" name="price" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-								<option min="0" max="10000000">Chọn tất cả</option>
+								<option min="0" max="10000000">Chọn Tất Cả</option>
 								<option min="0" max="600000">Từ 400.000 - 600.000 vnđ</option>
 								<option min="600000" max="800000">Từ 600.000 - 800.000 vnđ</option>
 								<option min="800000" max="1000000">Từ 800.000 - 1.000.000 vnđ</option>
@@ -58,9 +59,9 @@
 
 					<div class="col-md-3">
 						<div class="form-group">
-							<label class="dk">Chọn diện tích</label>
+							<label class="dk">Chọn Diện Tích</label>
 							<select id="acreage_2" name="acreage" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-								<option min="0" max="100">Chọn tất cả</option>
+								<option min="0" max="100">Chọn Tất Cả</option>
 								<option min="10" max="20">Từ 10 20 m2</option>
 								<option min="20" max="25">Từ 20 - 25 m2</option>
 								<option min="25" max="30">Từ 25 - 30 m2</option>
@@ -74,21 +75,21 @@
 
 					<div class="col-md-3">
 						<div class="form-group">
-							<label class="dk">Chọn tiện nghi</label>
+							<label class="dk">Chọn Tiện Nghi</label>
 							<select id="convenient_2" name="convenient[]" class="selectpicker form-control" multiple data-selected-text-format="count > 3" data-show-subtext="true" data-live-search="true"  data-actions-box="true">
-								<optgroup label="Tiện nghi nhà trọ">
-									@foreach ($convenients as $convenient)
-									@if($convenient->kind ==1)
-									<option value="{{$convenient->id}}">{{$convenient->name}}</option>
-									@endif
-									@endforeach
+								<optgroup label="Tiện Nghi Nhà Trọ">
+							        <s:iterator value="params.utilities" var="item">
+							           <s:if test="#item.kind == 1">
+							            <option value="<s:property value="id"/>"><s:property value="name"/></option>
+                                       </s:if>
+                                    </s:iterator>
 								</optgroup>
-								<optgroup label="Tiện nghi phòng trọ">
-									@foreach ($convenients as $convenient)
-									@if($convenient->kind ==2)
-									<option value="{{$convenient->id}}">{{$convenient->name}}</option>
-									@endif
-									@endforeach
+								<optgroup label="Tiện Nghi Phòng Trọ">
+							        <s:iterator value="params.utilities" var="item">
+							           <s:if test="#item.kind == 2">
+							            <option value="<s:property value="id"/>"><s:property value="name"/></option>
+                                       </s:if>
+                                    </s:iterator>
 								</optgroup>
 							</select>
 						</div>

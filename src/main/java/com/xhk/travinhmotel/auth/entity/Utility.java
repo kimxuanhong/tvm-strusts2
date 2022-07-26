@@ -18,6 +18,8 @@ public class Utility extends AbstractEntity implements Serializable {
     @Column(name = "slug")
     private String slug;
 
+    private Integer kind;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +42,13 @@ public class Utility extends AbstractEntity implements Serializable {
 
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    public Integer getKind() {
+        return kind;
+    }
+
+    public void setKind(Integer kind) {
+        this.kind = kind;
     }
 }

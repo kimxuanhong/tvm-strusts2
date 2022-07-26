@@ -74,11 +74,10 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-                    <s:a href="%{aboutUrl}">Về Chúng Tôi</s:a>
-				</li>
-
-				<li>
                     <s:a href="%{findUrl}">Tìm Quanh Đây</s:a>
+            	</li>
+				<li>
+                    <s:a href="%{aboutUrl}">Về Chúng Tôi</s:a>
 				</li>
 			</ul>
 

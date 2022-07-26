@@ -24,8 +24,8 @@ function districtChange(value)
 
 	$.ajax({
 		dataType: 'json',
-		url : "searchprovince",
-		method : "POST",
+		url : "/city",
+		method : "GET",
 		data : data_send,
 		success : function (result){
          		// Set the "selected" value of the <select>.
@@ -35,7 +35,6 @@ function districtChange(value)
 				$('select[name=province]').selectpicker('refresh');
 			}
 		});
-
 
 	// Force a refresh.
 	$('select[name=district]').selectpicker('refresh');
@@ -89,8 +88,8 @@ function searchMotelajax(){
 
 	$.ajax({
 		// dataType: 'json',
-		url : "searchmotel",
-		method : "POST",
+        url : "/tvm-web/api/motel/search.html",
+		method : "GET",
 		data : data_send,
 		success : function (result){
 			var data ='<h3 class="title-comm"><span class="title-holder">KẾT QUẢ TÌM KIẾM</span></h3>';
@@ -134,8 +133,8 @@ function searchMotelajax_2(){
 
 	$.ajax({
 		// dataType: 'json',
-		url : "searchmotel",
-		method : "POST",
+		url : "/tvm-web/api/motel/search.html",
+		method : "GET",
 		data : data_send,
 		success : function (result){
 			var data ='<h3 class="title-comm"><span class="title-holder">KẾT QUẢ TÌM KIẾM</span></h3>';
