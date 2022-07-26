@@ -31,7 +31,7 @@ public class AuthAction extends WebAction {
     )
     public String login() {
         try {
-            Account account = accountService.getAccountById(Long.parseLong(loginForm.getUsername()));
+            Account account = accountService.getAccountByEmail(loginForm.getUsername().trim());
             addParam("account", account);
             setUserRoles(Role.ADMIN);
             executeLogin();

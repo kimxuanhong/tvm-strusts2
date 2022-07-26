@@ -1,6 +1,8 @@
 package com.xhk.travinhmotel.auth.action.web;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.xhk.travinhmotel.auth.security.Role;
+import com.xhk.travinhmotel.auth.security.Secured;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -12,6 +14,7 @@ public class ProductAction extends ActionSupport {
 
     private String productName;
 
+    @Secured(value = Role.ADMIN)
     @Action(value = "detail", results = {
             @Result(name = SUCCESS, location = "product.detail", type = "tiles")
     })

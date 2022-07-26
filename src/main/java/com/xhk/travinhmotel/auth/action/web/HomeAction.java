@@ -1,6 +1,7 @@
 package com.xhk.travinhmotel.auth.action.web;
 
 import com.xhk.travinhmotel.auth.action.base.WebAction;
+import com.xhk.travinhmotel.auth.security.Secured;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -12,6 +13,7 @@ public class HomeAction extends WebAction {
 
     private String productName;
 
+    @Secured
     @Action(value = "index", results = {
             @Result(name = SUCCESS, location = "home.index", type = "tiles")
     })

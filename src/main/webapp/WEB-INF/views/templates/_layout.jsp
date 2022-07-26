@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+
+<s:url action="index" namespace="/home" var="homeUrl"/>
+<s:url action="index" namespace="/home" var="aboutUrl"/>
+<s:url action="index" namespace="/home" var="findUrl"/>
+<s:url action="index" namespace="/home" var="createMotelUrl"/>
+<s:url action="index" namespace="/auth" var="loginUrl"/>
+<s:url action="index" namespace="/auth" var="profileUrl"/>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +60,6 @@
 
 </div>
 
-
 <nav id="navbar" class="navbar navbar-inverse" role="navigation">
 	<div class="container" >
 		<div class="navbar-header">
@@ -61,31 +69,31 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="trang-chu.html">Trang chủ</a>
+			<s:a href="%{homeUrl}" class="navbar-brand">Trang chủ</s:a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="home.html">Trang Chủ</a>
-				</li>
-				<li>
-					<a href="about.html">Về Chúng Tôi</a>
+                    <s:a href="%{aboutUrl}">Về Chúng Tôi</s:a>
 				</li>
 
 				<li>
-					<a href="tim-quanh-day.html">Tìm quanh đây</a>
+                    <s:a href="%{findUrl}">Tìm Quanh Đây</s:a>
 				</li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="btn-dangtin" href="${pageContext.request.contextPath}/user/motel/add"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>
-				<li><a href="${pageContext.request.contextPath}/auth/index.html"><i class="fas fa-user-circle"></i> Đăng nhập / Đăng ký</a></li>
+				<li>
+                	<s:a href="%{createMotelUrl}" class="btn-dangtin"><i class="fas fa-edit"></i> Đăng tin ngay</s:a>
+				</li>
+				<li>
+                    <s:a href="%{loginUrl}"><i class="fas fa-user-circle"></i> Đăng nhập / Đăng ký</s:a>
+				</li>
 			</ul>
 
 		</div>
 	</div>
 </nav>
-
 
 <div id="dailogfind" class="modal fade" role="dialog">
 	<div class="modal-dialog">
@@ -194,10 +202,10 @@
 <div class="navbar-fixed-bottom navbar-default" role="navigation">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav navbar-center">
-			<li><a  id="menu"><span class="glyphicon glyphicon-align-justify"></span></a></li>
-			<li><a href="trang-chu.html"><span class="glyphicon glyphicon-home"></span></a></li>
-			<li><a href="user/motel/add"><span class="fas fa-edit"></span></a></li>
-			<li><a href="user/profile"><span class="glyphicon glyphicon-user"></span></a></li>
+			<li><a id="menu"><span class="glyphicon glyphicon-align-justify"></span></a></li>
+			<li><s:a href="%{homeUrl}"><span class="glyphicon glyphicon-home"></span></s:a></li>
+			<li><s:a href="%{homeUrl}"><span class="fas fa-edit"></span></s:a></li>
+			<li><s:a href="%{profileUrl}"><span class="glyphicon glyphicon-user"></span></s:a></li>
 			<li><a data-toggle="modal" data-target="#dailogfind"><span class="glyphicon glyphicon-search"></span></a></li>
 		</ul>
 	</div>
@@ -218,16 +226,15 @@
 
 			<div class="col-md-4">
 				<ul class="menu">
-					<span>MENU</span>
-
+					<span>Doanh Mục</span>
 					<li>
-						<a href="home.html">Trang Chủ</a>
+						<s:a href="%{homeUrl}">Trang Chủ</s:a>
 					</li>
 					<li>
-						<a href="about.html">About</a>
+						<s:a href="%{aboutUrl}">Về Chúng Tôi</s:a>
 					</li>
 					<li>
-						<a href="find.html">Tìm Quanh Đây</a>
+					    <s:a href="%{findUrl}">Tìm Quanh Đây</s:a>
 					</li>
 
 				</ul>
@@ -250,6 +257,7 @@
 		</div>
 	</div>
 </footer>
+
 <script src="${pageContext.request.contextPath}/public/assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/public/assets/bootstrap/bootstrap-select.min.js"></script>
 <script src="${pageContext.request.contextPath}/public/assets/js/fileinput/fileinput.js"></script>
