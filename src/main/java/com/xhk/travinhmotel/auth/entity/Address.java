@@ -1,11 +1,13 @@
 package com.xhk.travinhmotel.auth.entity;
 
 
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Address {
+public class Address extends AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

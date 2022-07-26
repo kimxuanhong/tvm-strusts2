@@ -2,10 +2,7 @@ package com.xhk.travinhmotel.auth.entity;
 
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Basic;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import java.time.OffsetDateTime;
 
 import static java.time.OffsetDateTime.now;
@@ -16,10 +13,13 @@ import static java.time.OffsetDateTime.now;
 public class AbstractEntity {
 
     @Basic(optional = false)
+    @Column(name = "delete_flag")
     private boolean deleteFlag;
 
+    @Column(name = "created_at")
     private OffsetDateTime createdAt;
 
+    @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
 
     @PrePersist

@@ -5,6 +5,7 @@ import com.xhk.travinhmotel.auth.entity.enums.Gender;
 import com.xhk.travinhmotel.auth.entity.enums.LoginStatus;
 import com.xhk.travinhmotel.auth.entity.enums.RegisterStatus;
 import com.xhk.travinhmotel.auth.entity.enums.UserRole;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,30 +17,42 @@ public class Account extends AbstractEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
     @Column(unique = true)
     private String email;
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
     private UserRole userRole;
     private String password;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "avatar_url")
     private String avatarUrl;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     @Enumerated(EnumType.STRING)
+    @Column(name = "login_status")
     private LoginStatus loginStatus;
     @Enumerated(EnumType.STRING)
+    @Column(name = "register_status")
     private RegisterStatus registerStatus;
+    @Column(name = "registration_token")
     private String registrationToken;
     @Column(columnDefinition = "TEXT")
     private String address;
 
     public String getFullName() {
-        String _lastName = lastName != null ? lastName : "";
-        String _firstName = firstName != null ? firstName : "";
-        return _lastName.concat(" ").concat(_firstName).trim();
+        if (!StringUtils.isEmpty(lastName) && !StringUtils.isEmpty(firstName)) {
+            return lastName.concat(" ").concat(firstName).trim();
+        } else if (!StringUtils.isEmpty(lastName)) {
+            return lastName;
+        } else if (!StringUtils.isEmpty(firstName)) {
+            return firstName;
+        }
+        return null;
     }
 
     public Long getId() {

@@ -189,20 +189,9 @@
 
 	</div>
 </div>
-
-
-<div id="menu-category" class="menu-category">
-	@foreach ($categorys as $category)
-	@if($category->kind == 2)
-	<a href="{{$category->slug}}.html">{{$category->name}}</a>
-	@endif
-	@endforeach
-</div>
-
 <div class="navbar-fixed-bottom navbar-default" role="navigation">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav navbar-center">
-			<li><a id="menu"><span class="glyphicon glyphicon-align-justify"></span></a></li>
 			<li><s:a href="%{homeUrl}"><span class="glyphicon glyphicon-home"></span></s:a></li>
 			<li><s:a href="%{homeUrl}"><span class="fas fa-edit"></span></s:a></li>
 			<li><s:a href="%{profileUrl}"><span class="glyphicon glyphicon-user"></span></s:a></li>
@@ -264,13 +253,5 @@
 <script src="${pageContext.request.contextPath}/public/assets/js/fileinput/vi.js"></script>
 <script src="${pageContext.request.contextPath}/public/admin_assets/bower_components/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/public/assets/js/totop.js"></script>
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#menu").click(function(){
-			$("#menu-category").slideToggle("slow");
-		});
-	});
-</script>
 </body>
 </html>

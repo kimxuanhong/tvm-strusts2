@@ -2,9 +2,12 @@ package com.xhk.travinhmotel.auth.entity;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Contact extends AbstractEntity {
+public class Contact extends AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,12 +21,6 @@ public class Contact extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "motel_id")
     private Motel motel;
-
-    @ManyToOne
-    private Customer createBy;
-
-    @ManyToOne
-    private Staff updateBy;
 
     public Long getId() {
         return id;
@@ -63,21 +60,5 @@ public class Contact extends AbstractEntity {
 
     public void setMotel(Motel motel) {
         this.motel = motel;
-    }
-
-    public Customer getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(Customer createBy) {
-        this.createBy = createBy;
-    }
-
-    public Staff getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(Staff updateBy) {
-        this.updateBy = updateBy;
     }
 }

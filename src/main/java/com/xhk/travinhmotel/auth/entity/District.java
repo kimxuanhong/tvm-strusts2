@@ -1,34 +1,37 @@
 package com.xhk.travinhmotel.auth.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-public class District {
+public class District extends AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    private String type;
-
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "slug")
+    private String slug;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     private City city;
 
-    public long getId() {
+    @OneToMany(mappedBy = "district", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Set<Ward> wards;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getName() {
@@ -39,6 +42,14 @@ public class District {
         this.name = name;
     }
 
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
     public City getCity() {
         return city;
     }
@@ -46,4 +57,14 @@ public class District {
     public void setCity(City city) {
         this.city = city;
     }
+
+    public Set<Ward> getWards() {
+        return wards;
+    }
+
+    public void setWards(Set<Ward> wards) {
+        this.wards = wards;
+    }
 }
+
+

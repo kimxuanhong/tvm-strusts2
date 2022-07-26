@@ -1,27 +1,30 @@
 package com.xhk.travinhmotel.auth.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class MotelUtility extends AbstractEntity {
-    @EmbeddedId
-    private MotelUtilityPK id;
+public class MotelUtility extends AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "motel_id ")
-    @MapsId("motel_id ")
     private Motel motel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "utility_id")
-    @MapsId("utility_id")
     private Utility utility;
 
-    public MotelUtilityPK getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(MotelUtilityPK id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

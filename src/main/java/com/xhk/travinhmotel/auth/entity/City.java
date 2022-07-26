@@ -1,32 +1,34 @@
 package com.xhk.travinhmotel.auth.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-public class City {
+public class City extends AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    private String type;
-
+    @Column(name = "name")
     private String name;
 
-    public long getId() {
+    @Column(name = "slug")
+    private String slug;
+
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Set<District> districts;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getName() {
@@ -35,5 +37,21 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public Set<District> getDistricts() {
+        return districts;
+    }
+
+    public void setDistricts(Set<District> districts) {
+        this.districts = districts;
     }
 }

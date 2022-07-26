@@ -1,7 +1,12 @@
 package com.xhk.travinhmotel.auth.action.web;
 
 import com.xhk.travinhmotel.auth.action.base.WebAction;
+import com.xhk.travinhmotel.auth.dao.AccountDao;
 import com.xhk.travinhmotel.auth.entity.Account;
+import com.xhk.travinhmotel.auth.entity.enums.Gender;
+import com.xhk.travinhmotel.auth.entity.enums.LoginStatus;
+import com.xhk.travinhmotel.auth.entity.enums.RegisterStatus;
+import com.xhk.travinhmotel.auth.entity.enums.UserRole;
 import com.xhk.travinhmotel.auth.form.LoginForm;
 import com.xhk.travinhmotel.auth.security.Role;
 import com.xhk.travinhmotel.auth.security.Secured;

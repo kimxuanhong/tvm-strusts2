@@ -1,24 +1,28 @@
 package com.xhk.travinhmotel.auth.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-public class Feedback extends AbstractEntity {
+public class Feedback extends AbstractEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String content;
+    private String comments;
 
-    private int rating;
+    private Integer rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "motel_id")
     private Motel motel;
 
-    @ManyToOne
-    private Customer createBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "create_by_id")
+    private Account createBy;
 
     public Long getId() {
         return id;
@@ -28,19 +32,19 @@ public class Feedback extends AbstractEntity {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getComments() {
+        return comments;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
@@ -52,11 +56,11 @@ public class Feedback extends AbstractEntity {
         this.motel = motel;
     }
 
-    public Customer getCreateBy() {
+    public Account getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(Customer createBy) {
+    public void setCreateBy(Account createBy) {
         this.createBy = createBy;
     }
 }
