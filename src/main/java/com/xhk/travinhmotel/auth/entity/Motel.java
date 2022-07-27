@@ -23,13 +23,13 @@ public class Motel extends AbstractEntity implements Serializable {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "create_by_id")
     private Account createBy;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "update_by_id")
     private Account updateBy;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
     @OneToMany(mappedBy = "motel", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

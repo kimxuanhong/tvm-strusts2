@@ -9,7 +9,6 @@ import com.xhk.travinhmotel.auth.entity.Category;
 import com.xhk.travinhmotel.auth.entity.City;
 import com.xhk.travinhmotel.auth.entity.District;
 import com.xhk.travinhmotel.auth.entity.Utility;
-import com.xhk.travinhmotel.auth.security.Secured;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
@@ -21,7 +20,6 @@ public class HomeAction extends WebAction {
 
     private static final long serialVersionUID = 1L;
 
-    @Secured
     @Action(value = "index", results = {
             @Result(name = SUCCESS, location = "home.index", type = "tiles")
     })

@@ -81,8 +81,7 @@
     				</div>
     			<div class="motel-detail">
     				<h4><a href="${pageContext.request.contextPath}/product/detail.html">Ten nha tro</a></h4>
-    				<div class="motel-meta">
-    					<span><i class="fas fa-user-circle"></i> Người đăng: <a href="/">Nguyen Van A</a></span>
+    				<div class="motel-meta"> <a href="/">Nguyen Van A</a></span>
     					<span class="pull-right"><i class="far fa-clock">30/03/2022</i>
     					</span>
     				</div>

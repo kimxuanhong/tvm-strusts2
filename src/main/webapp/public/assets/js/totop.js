@@ -73,23 +73,26 @@ function searchMotelajax(){
 	var convenient = $("#convenient").val();
 	var name = $("#name").val();
 
+   var search = {
+           		price_min: price_min,
+           		price_max: price_max,
+           		acreage_min: acreage_min,
+           		acreage_max: acreage_max,
+           		district: district_id,
+           		province: province_id,
+           		category:category_id,
+           		convenient: convenient,
+           		name: name
+           }
 
 	var data_send = {
-		price_min: price_min,
-		price_max: price_max,
-		acreage_min: acreage_min,
-		acreage_max: acreage_max,
-		district: district_id,
-		province: province_id,
-		category:category_id,
-		convenient: convenient,
-		name: name
+        search: search
 	}
 
 	$.ajax({
-		// dataType: 'json',
+		dataType: 'json',
         url : "/tvm-web/api/motel/search.html",
-		method : "GET",
+		method : "POST",
 		data : data_send,
 		success : function (result){
 			var data ='<h3 class="title-comm"><span class="title-holder">KẾT QUẢ TÌM KIẾM</span></h3>';
@@ -119,29 +122,37 @@ function searchMotelajax_2(){
 	var name = $("#name_2").val();
 
 
+   var search = {
+           		price_min: price_min,
+           		price_max: price_max,
+           		acreage_min: acreage_min,
+           		acreage_max: acreage_max,
+           		district: district_id,
+           		province: province_id,
+           		category:category_id,
+           		convenient: convenient,
+           		name: name
+           }
+
 	var data_send = {
-		price_min: price_min,
-		price_max: price_max,
-		acreage_min: acreage_min,
-		acreage_max: acreage_max,
-		district: district_id,
-		province: province_id,
-		category:category_id,
-		convenient: convenient,
-		name: name
+        search: search
 	}
 
-	$.ajax({
-		// dataType: 'json',
-		url : "/tvm-web/api/motel/search.html",
-		method : "GET",
-		data : data_send,
-		success : function (result){
-			var data ='<h3 class="title-comm"><span class="title-holder">KẾT QUẢ TÌM KIẾM</span></h3>';
-			data += result;
-			$("#content").html(data);
-		}
-	});
+	var settings = {
+      "url": "/tvm-web/api/motel/search.html",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Cookie": document.cookie
+      },
+      "data": JSON.stringify(data_send),
+    };
+
+    $.ajax(settings).done(function (response) {
+     	$("#content").html(response);
+    });
+
+
 
 	$('html, body').animate({
 		scrollTop: $('#content').offset().top
