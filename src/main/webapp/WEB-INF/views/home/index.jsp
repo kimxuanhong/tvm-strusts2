@@ -124,22 +124,8 @@
 		</ul>
 	</div>
 	<div id="content">
-		<!-- map -->
-
-		<!-- danh mục -->
-		<h3 class="title-comm"><span class="title-holder">XEM NHIỀU NHẤT</span><!-- <marquee>Nhiều người quan tâm - hãy xem nó có phù hợp với bạn</marquee> --></h3>
-		    <s:include value="/WEB-INF/views/product/list.jsp">
-                <s:param name="product">TestThis</s:param>
-            </s:include>
-		<!-- danh mục -->
-		<h3 class="title-comm"><span class="title-holder">GIÁ TỐT NHẤT</span><!-- <marquee>Phù hợp với bạn nào có hồ bao không lớn - nhưng vẫn có nơi ở tốt</marquee> --></h3>
-		    <s:include value="/WEB-INF/views/product/list.jsp">
-                <s:param name="product">TestThis</s:param>
-            </s:include>
 		<!-- danh mục -->
 		<h3 class="title-comm"><span class="title-holder">MỚI THÊM GẦN ĐÂY</span><!-- <marquee>Nơi ở mới luôn được cập nhật hằng ngày</marquee> --></h3>
-		    <s:include value="/WEB-INF/views/product/list.jsp">
-               <s:param name="product">TestThis</s:param>
-            </s:include>
+        <s:action name="newest" namespace="/product" executeResult="true" />
 	</div>
 </div>

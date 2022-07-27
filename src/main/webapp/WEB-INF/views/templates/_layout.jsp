@@ -94,107 +94,12 @@
 	</div>
 </nav>
 
-<div id="dailogfind" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Tìm kiếm</h4>
-			</div>
-			<div class="modal-body">
-				<form onsubmit="return false">
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<input id="vcategory" type="hidden" name="category" value="{{$category->id}}">
-					<div class="form-group">
-						<label class="dk">Chọn danh mục</label>
-						<select id="category" name="category" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-							<!-- <option value="0">Chọn tất cả</option> -->
-							@foreach ($categorys as $category)
-							<option @if($category->id==1) selected @endif value="{{$category->id}}">{{$category->name}}</option>
-							@endforeach
-						</select>
-					</div>
-					<div class="form-group">
-						<label class="dk">Chọn tỉnh</label>
-						<select onchange="provinceChange(this.value)" id="province" name="province" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-							<option value="0">Chọn tất cả</option>
-							@foreach ($provinces as $province)
-							<option @if($province->id==1) selected @endif value="{{$province->id}}">{{$province->name}}</option>
-							@endforeach
-						</select>
-					</div>
-					<div class="form-group">
-						<label class="dk">Chọn quận/huyện</label>
-						<select onchange="districtChange(this.value)" id="district" name="district" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-							<option value="0">Chọn tất cả</option>
-							@foreach ($districts as $district)
-							<option @if($district->id==1) selected @endif  value="{{$district->id}}">{{$district->name}}</option>
-							@endforeach
-						</select>
-					</div>
-					<div class="form-group">
-						<label class="dk">Chọn khoản giá</label>
-						<select id="price" name="price" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-							<option min="0" max="10000000">Chọn tất cả</option>
-							<option min="0" max="600000">Từ 400.000 - 600.000 vnđ</option>
-							<option min="600000" max="800000">Từ 600.000 - 800.000 vnđ</option>
-							<option min="800000" max="1000000">Từ 800.000 - 1.000.000 vnđ</option>
-							<option min="1000000" max="1200000">Từ 1.000.000 - 1200.000 vnđ</option>
-							<option min="1200000" max="1400000">Từ 1.200.000 - 1.400.000 vnđ</option>
-							<option min="1400000" max="10000000">Từ 1.400.000 - 10.000.000 vnđ</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label class="dk">Chọn diện tích</label>
-						<select id="acreage" name="acreage" class="selectpicker form-control" data-show-subtext="true" data-live-search="true">
-							<option min="0" max="100">Chọn tất cả</option>
-							<option min="10" max="20">Từ 10 20 m2</option>
-							<option min="20" max="25">Từ 20 - 25 m2</option>
-							<option min="25" max="30">Từ 25 - 30 m2</option>
-							<option min="30" max="35">Từ 30 -35 m2</option>
-							<option min="35" max="40">Từ 35 - 40 m2</option>
-							<option min="40" max="45">Từ 40 - 45 m2</option>
-							<option min="45" max="100">Từ 45 - 100 m2</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label class="dk">Tiện nghi</label>
-						<select id="convenient" name="convenient[]" class="selectpicker form-control" multiple data-selected-text-format="count > 3" data-show-subtext="true" data-live-search="true"  data-actions-box="true">
-							<optgroup label="Tiện nghi nhà trọ">
-								@foreach ($convenients as $convenient)
-								@if($convenient->kind ==1)
-								<option value="{{$convenient->id}}">{{$convenient->name}}</option>
-								@endif
-								@endforeach
-							</optgroup>
-							<optgroup label="Tiện nghi phòng trọ">
-								@foreach ($convenients as $convenient)
-								@if($convenient->kind ==2)
-								<option value="{{$convenient->id}}">{{$convenient->name}}</option>
-								@endif
-								@endforeach
-							</optgroup>
-						</select>
-					</div>
-					<div class="form-group">
-						<label class="dk">Tìm theo tên</label>
-						<input id="name" type="text" name="name" class="form-control">
-					</div>
-					<button class="btn btn-success form-control" onclick="searchMotelajax()">Tìm kiếm</button>
-				</form>
-			</div>
-		</div>
-
-	</div>
-</div>
 <div class="navbar-fixed-bottom navbar-default" role="navigation">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav navbar-center">
 			<li><s:a href="%{homeUrl}"><span class="glyphicon glyphicon-home"></span></s:a></li>
 			<li><s:a href="%{homeUrl}"><span class="fas fa-edit"></span></s:a></li>
 			<li><s:a href="%{profileUrl}"><span class="glyphicon glyphicon-user"></span></s:a></li>
-			<li><a data-toggle="modal" data-target="#dailogfind"><span class="glyphicon glyphicon-search"></span></a></li>
 		</ul>
 	</div>
 </div>

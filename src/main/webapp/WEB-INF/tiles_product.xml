@@ -10,4 +10,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/product/detail.jsp"/>
 	</definition>
 
+	<definition name="product.list" template="/WEB-INF/views/product/list.jsp">
+		<put-attribute name="content" value=""/>
+	</definition>
+
 </tiles-definitions>

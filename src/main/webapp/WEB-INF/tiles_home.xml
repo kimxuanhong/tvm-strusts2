@@ -10,4 +10,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/home/index.jsp"/>
 	</definition>
 
+	<definition name="home.dailog" template="/WEB-INF/views/home/dailog.jsp">
+		<put-attribute name="content" value=""/>
+	</definition>
+
 </tiles-definitions>
