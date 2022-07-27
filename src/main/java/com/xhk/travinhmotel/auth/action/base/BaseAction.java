@@ -66,11 +66,11 @@ public abstract class BaseAction extends ActionSupport implements Parameterizabl
     }
 
     protected void executeLogin() {
-        addSession("loginStatus", "true");
+        addSession("loginStatus", true);
     }
 
     protected void executeLout() {
-        addSession("loginStatus", "false");
+        addSession("loginStatus", false);
     }
 
     protected void setUserRoles(Role... roles){

@@ -35,11 +35,11 @@ public class SecurityInterceptor extends AbstractInterceptor {
             HttpServletRequest request = ServletActionContext.getRequest();
             HttpSession session = request.getSession();
 
-            String loginStatus = (String) session.getAttribute("loginStatus");
+            Boolean loginStatus = (Boolean) session.getAttribute("loginStatus");
             List<Role> userRoles = (List<Role>) session.getAttribute("userRoles");
             List<Role> funRoles = Arrays.asList(role.value());
 
-            boolean isLogin = loginStatus == null || !loginStatus.equals("true");
+            boolean isLogin = loginStatus == null || !loginStatus.equals(true);
             boolean isGrand = userRoles != null && (userRoles.stream().anyMatch(x -> funRoles.stream().anyMatch(y -> y.equals(x))) || (funRoles.size()==1 && funRoles.get(0).equals(Role.GUEST)));
 
             if (isLogin || !isGrand) {

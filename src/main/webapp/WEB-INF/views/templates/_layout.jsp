@@ -7,6 +7,7 @@
 <s:url action="index" namespace="/home" var="findUrl"/>
 <s:url action="index" namespace="/home" var="createMotelUrl"/>
 <s:url action="index" namespace="/auth" var="loginUrl"/>
+<s:url action="logout" namespace="/auth" var="logoutUrl"/>
 <s:url action="index" namespace="/auth" var="profileUrl"/>
 
 
@@ -69,27 +70,34 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<s:a href="%{homeUrl}" class="navbar-brand">Trang chủ</s:a>
+			<s:a href="%{homeUrl}" class="navbar-brand"> <span class="glyphicon glyphicon-home"></span> Trang chủ</s:a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-                    <s:a href="%{findUrl}">Tìm Quanh Đây</s:a>
+                    <s:a href="%{findUrl}"><span class="glyphicon glyphicon-map-marker"></span> Tìm Quanh Đây</s:a>
             	</li>
-				<li>
-                    <s:a href="%{aboutUrl}">Về Chúng Tôi</s:a>
-				</li>
 			</ul>
 
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-                	<s:a href="%{createMotelUrl}" class="btn-dangtin"><i class="fas fa-edit"></i> Đăng tin ngay</s:a>
-				</li>
-				<li>
-                    <s:a href="%{loginUrl}"><i class="fas fa-user-circle"></i> Đăng nhập / Đăng ký</s:a>
-				</li>
-			</ul>
-
+			<s:if test="%{#session.loginStatus == true}">
+			    <ul class="nav navbar-nav navbar-right">
+			    	<li><s:a href="%{createMotelUrl}" class="btn-dangtin"><i class="fas fa-edit"></i> Đăng tin ngay</s:a></li>
+			    	<li class="dropdown">
+			    		<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fas fa-user-circle"></i> ${session.account.fullName} <span class="caret"></span></a>
+			    		<ul class="dropdown-menu">
+			    			<li><s:a href="%{profileUrl}">Thông tin chi tiết</s:a></li>
+			    			<li><s:a href="%{logoutUrl}">Thoát</s:a></li>
+			    		</ul>
+			    	</li>
+			    	<li><s:a href="%{logoutUrl}"><i class="fas fa-sign-in-alt"></i> Đăng xuất</s:a></li>
+			    </ul>
+			</s:if>
+            <s:else>
+			    <ul class="nav navbar-nav navbar-right">
+			    	<li><s:a href="%{createMotelUrl}" class="btn-dangtin"><i class="fas fa-edit"></i> Đăng tin ngay</s:a></li>
+			    	<li><s:a href="%{loginUrl}"><i class="fas fa-user-circle"></i> Đăng nhập / Đăng ký</s:a></li>
+			    </ul>
+			</s:else>
 		</div>
 	</div>
 </nav>
@@ -122,9 +130,6 @@
 					<span>Doanh Mục</span>
 					<li>
 						<s:a href="%{homeUrl}">Trang Chủ</s:a>
-					</li>
-					<li>
-						<s:a href="%{aboutUrl}">Về Chúng Tôi</s:a>
 					</li>
 					<li>
 					    <s:a href="%{findUrl}">Tìm Quanh Đây</s:a>

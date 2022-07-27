@@ -34,7 +34,7 @@ public class AuthAction extends WebAction {
     public String login() {
         try {
             Account account = accountService.getAccountByEmail(loginForm.getUsername().trim());
-            addParam("account", account);
+            addSession("account", account);
             setUserRoles(Role.ADMIN);
             executeLogin();
             return SUCCESS;
@@ -46,11 +46,12 @@ public class AuthAction extends WebAction {
     @Secured
     @Action(value = "logout",
             results = {
-                    @Result(name = SUCCESS, type = "redirectAction", params = {"actionName", "index", "namespace", "/home"}),
+                    @Result(name = SUCCESS, type = "redirectAction", params = {"actionName", "index", "namespace", "/auth"}),
             }
     )
     public String logout() {
         try {
+            addSession("account", null);
             setUserRoles();
             executeLout();
             return SUCCESS;
